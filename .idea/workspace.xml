@@ -49,7 +49,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "com.github.iguissouma.nxconsole.dontShowDeprecationNoticeAgain": "true",
-    "last_opened_file_path": "/Users/mshepelev/WebstormProjects/design-patterns-ru/TypeScript/ReactOOPPres/src/pages/Structure/Adapter/api",
+    "last_opened_file_path": "/Users/mshepelev/WebstormProjects/design-patterns-ru/TypeScript/ReactOOPPres",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -63,11 +63,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/pages/Structure/Adapter/api" />
       <recent name="$PROJECT_DIR$/src/pages/Structure/Adapter/models" />
       <recent name="$PROJECT_DIR$/src/pages/Structure/Adapter/components" />
       <recent name="$PROJECT_DIR$/src/pages/Structure/Adapter" />
-      <recent name="$PROJECT_DIR$/src/pages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/pages/Structure/Adapter" />
@@ -104,7 +104,7 @@
       <workItem from="1695128889042" duration="74000" />
       <workItem from="1695128969211" duration="51935000" />
       <workItem from="1695985000248" duration="3928000" />
-      <workItem from="1696264602800" duration="13667000" />
+      <workItem from="1696264602800" duration="13966000" />
     </task>
     <servers />
   </component>
@@ -116,7 +116,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
