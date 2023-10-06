@@ -1,45 +1,26 @@
-import { useUserData } from './api/v1/user.ts'
-import UserCard from './components/UserCard.tsx'
+import { useUserData, useUserInfo } from './api/v2/user.ts'
+import UserCardAdapter from './components/UserCardAdapter.tsx'
 
 const AdapterFC = () => {
-  const { data } = useUserData()
+  const { data: userData } = useUserData()
+  const { data: userInfo } = useUserInfo()
 
-  if (!data) return 'загрузка...'
+  if (!userData || !userInfo) return 'загрузка...'
 
-  const {
-    id,
-    username,
-    password,
-    email,
-    firstName,
-    lastName,
-    birthdate,
-    address,
-    phoneNumber,
-    socialProfile,
-    isVerified,
-    lastLogin,
-    isActive,
-    avatarUrl
-  } = data
+
+  const { id, personal, performance } = userData
+
+  const { isActive, avatarUrl } = userInfo
+
 
   return (
-    <UserCard
-      id={id}
-      username={username}
-      password={password}
-      email={email}
-      firstName={firstName}
-      lastName={lastName}
-      birthdate={birthdate}
-      address={address}
-      phoneNumber={phoneNumber}
-      socialProfile={socialProfile}
-      isVerified={isVerified}
-      lastLogin={lastLogin}
-      avatarUrl={avatarUrl}
-      isActive={isActive}
-    />
+      <UserCardAdapter
+          id={id}
+          personal={personal}
+          performance={performance}
+          isActive={isActive}
+          avatarUrl={avatarUrl}
+      />
   )
 }
 
