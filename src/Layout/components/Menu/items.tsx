@@ -3,6 +3,7 @@ import {
   ApiOutlined,
   BankOutlined,
   BuildOutlined,
+  ColumnWidthOutlined,
   SwapOutlined,
   TeamOutlined,
   ToolOutlined,
@@ -66,6 +67,11 @@ export const MENU_ITEMS: MenuItem[] = [
         key: Path.AdapterClassic,
         icon: <ApiOutlined />,
         label: 'Адаптер Classic'
+      },
+      {
+        key: Path.Bridge,
+        icon: <ColumnWidthOutlined />,
+        label: 'Мост'
       }
     ]
   }
