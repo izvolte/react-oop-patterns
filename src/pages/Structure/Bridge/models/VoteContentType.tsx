@@ -1,6 +1,8 @@
-import { Avatar, Radio, RadioChangeEvent, Space, Typography } from 'antd'
-import React from 'react'
-import { ContentTypeImplementation } from '../types'
+import { Typography } from 'antd'
+import { ContentTypeImplementation } from './types'
+import VoteContentThumbnail from '@/pages/Structure/Bridge/components/VoteContent/VoteContentThumbnail.tsx'
+import VoteContentCaption from '@/pages/Structure/Bridge/components/VoteContent/VoteContentCaption.tsx'
+import VoteContentTitle from '@/pages/Structure/Bridge/components/VoteContent/VoteContentTitle.tsx'
 export class VoteContentType implements ContentTypeImplementation {
   constructor(
     public id: string,
@@ -11,42 +13,15 @@ export class VoteContentType implements ContentTypeImplementation {
   ) {}
 
   renderThumbnail() {
-    return () => (
-      <Avatar
-        shape='square'
-        size={256}
-        src={<img src={this.thumbnailUrl} alt='avatar' />}
-      />
-    )
+    return () => <VoteContentThumbnail thumbnailUrl={this.thumbnailUrl} />
   }
 
   renderCaption() {
-    return () => {
-      const [value, setValue] = React.useState(1)
-
-      const onChange = (e: RadioChangeEvent) => {
-        console.log('radio checked', e.target.value)
-        setValue(e.target.value)
-      }
-
-      return (
-        <Radio.Group onChange={onChange} value={value}>
-          <Space direction='vertical'>
-            {this.options.map(option => (
-              <Radio key={option} value={option}>
-                {option}
-              </Radio>
-            ))}
-          </Space>
-        </Radio.Group>
-      )
-    }
+    return () => <VoteContentCaption options={this.options} />
   }
 
   renderTitle() {
-    return () => (
-      <Typography.Title level={3}>Голосование: {this.title}</Typography.Title>
-    )
+    return () => <VoteContentTitle title={this.title} />
   }
 
   renderLink() {

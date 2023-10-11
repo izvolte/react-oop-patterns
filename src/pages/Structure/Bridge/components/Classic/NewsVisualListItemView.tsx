@@ -1,5 +1,5 @@
 import { List, Space } from 'antd'
-import { ListNewsItemViewAbstractionProps } from '../types.ts'
+import { ListNewsItemViewAbstractionProps } from './types'
 
 const NewsVisualListItemView = ({
   contentType

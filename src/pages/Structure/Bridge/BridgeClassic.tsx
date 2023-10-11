@@ -1,10 +1,10 @@
-import { content } from './mock.ts'
+import { content } from './models/mock.ts'
 import { List, Space } from 'antd'
 
-import NewsVisualListItemView from './components/NewsVisualListItemView.tsx'
-import NewsDescriptiveListItemView from './components/NewsDescriptiveListItemView.tsx'
+import NewsVisualListItemView from './components/Classic/NewsVisualListItemView'
+import NewsDescriptiveListItemView from './components/Classic/NewsDescriptiveListItemView'
 
-const Bridge = () => {
+const BridgeClassic = () => {
   return (
     <Space direction='vertical'>
       <List bordered itemLayout='horizontal'>
@@ -21,4 +21,4 @@ const Bridge = () => {
   )
 }
 
-export default Bridge
+export default BridgeClassic

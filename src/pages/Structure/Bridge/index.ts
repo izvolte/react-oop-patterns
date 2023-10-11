@@ -1,3 +1,4 @@
-import Bridge from './Bridge.tsx'
+import BridgeClassic from './BridgeClassic.tsx'
+import BridgeFC from './BridgeFC.tsx'
 
-export default Bridge
+export default { BridgeClassic, BridgeFC }

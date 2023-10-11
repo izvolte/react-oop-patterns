@@ -69,9 +69,14 @@ export const MENU_ITEMS: MenuItem[] = [
         label: 'Адаптер Classic'
       },
       {
-        key: Path.Bridge,
+        key: Path.BridgeFC,
         icon: <ColumnWidthOutlined />,
-        label: 'Мост'
+        label: 'Мост FC'
+      },
+      {
+        key: Path.BridgeClassic,
+        icon: <ColumnWidthOutlined />,
+        label: 'Мост Classic'
       }
     ]
   }

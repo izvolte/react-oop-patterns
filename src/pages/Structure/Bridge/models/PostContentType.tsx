@@ -1,5 +1,8 @@
-import { Avatar, Typography } from 'antd'
-import { ContentTypeImplementation } from '../types'
+import { ContentTypeImplementation } from './types'
+import PostContentThumbnail from '../components/PostContent/PostContentThumbnail'
+import PostContentCaption from '../components/PostContent/PostContentCaption'
+import PostContentTitle from '../components/PostContent/PostContentTitle'
+import PostContentLink from '../components/PostContent/PostContentLink'
 export class PostContentType implements ContentTypeImplementation {
   constructor(
     public id: string,
@@ -10,22 +13,18 @@ export class PostContentType implements ContentTypeImplementation {
   ) {}
 
   renderThumbnail() {
-    return () => (
-      <Avatar size={128} src={<img src={this.imageUrl} alt='avatar' />} />
-    )
+    return () => <PostContentThumbnail imageUrl={this.imageUrl} />
   }
 
   renderCaption() {
-    return () => <Typography.Text>{this.caption}</Typography.Text>
+    return () => <PostContentCaption caption={this.caption} />
   }
 
   renderTitle() {
-    return () => (
-      <Typography.Title level={3}>Публикация: {this.title}</Typography.Title>
-    )
+    return () => <PostContentTitle title={this.title} />
   }
 
   renderLink() {
-    return () => <Typography.Link href={this.url}>Читать все</Typography.Link>
+    return () => <PostContentLink url={this.url} />
   }
 }

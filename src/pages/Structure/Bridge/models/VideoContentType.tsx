@@ -1,5 +1,8 @@
-import { Image, Typography } from 'antd'
-import { ContentTypeImplementation } from '../types'
+import { ContentTypeImplementation } from './types'
+import VideoContentThumbnail from '../components/VideoContent/VideoContentThumbnail.tsx'
+import VideoContentCaption from '../components/VideoContent/VideoContentCaption.tsx'
+import VideoContentTitle from '../components/VideoContent/VideoContentTitle.tsx'
+import VideoContentLink from '../components/VideoContent/VideoContentLink.tsx'
 export class VideoContentType implements ContentTypeImplementation {
   constructor(
     public id: string,
@@ -10,20 +13,18 @@ export class VideoContentType implements ContentTypeImplementation {
   ) {}
 
   renderThumbnail() {
-    return () => <Image width={200} src={this.thumbnailUrl} />
+    return () => <VideoContentThumbnail thumbnailUrl={this.thumbnailUrl} />
   }
 
   renderCaption() {
-    return () => <Typography.Text keyboard>{this.description}</Typography.Text>
+    return () => <VideoContentCaption description={this.description} />
   }
 
   renderTitle() {
-    return () => (
-      <Typography.Title level={3}>Видео: {this.title}</Typography.Title>
-    )
+    return () => <VideoContentTitle title={this.title} />
   }
 
   renderLink() {
-    return () => <Typography.Link href={this.url}>Смотреть</Typography.Link>
+    return () => <VideoContentLink url={this.url} />
   }
 }

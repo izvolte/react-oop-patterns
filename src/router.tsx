@@ -6,7 +6,8 @@ import { Prototype, PrototypeRegistry } from '@/pages/Creational/Prototype'
 import { Singleton } from '@/pages/Creational/Singleton'
 import { Builder } from '@/pages/Creational/Builder'
 import { AdapterFC, AdapterClassic } from '@/pages/Structure/Adapter'
-import Bridge from './pages/Structure/Bridge/Bridge'
+import BridgeClassic from './pages/Structure/Bridge/BridgeClassic.tsx'
+import BridgeFC from './pages/Structure/Bridge/BridgeFC.tsx'
 export const routes = (): RouteObject[] => {
   return [
     {
@@ -50,8 +51,12 @@ export const routes = (): RouteObject[] => {
           path: Path.AdapterClassic
         },
         {
-          element: <Bridge />,
-          path: Path.Bridge
+          element: <BridgeFC />,
+          path: Path.BridgeFC
+        },
+        {
+          element: <BridgeClassic />,
+          path: Path.BridgeClassic
         }
       ]
     },
