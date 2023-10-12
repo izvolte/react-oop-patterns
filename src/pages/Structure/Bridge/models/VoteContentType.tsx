@@ -1,8 +1,8 @@
 import { Typography } from 'antd'
 import { ContentTypeImplementation } from './types'
-import VoteContentThumbnail from '@/pages/Structure/Bridge/components/VoteContent/VoteContentThumbnail.tsx'
-import VoteContentCaption from '@/pages/Structure/Bridge/components/VoteContent/VoteContentCaption.tsx'
-import VoteContentTitle from '@/pages/Structure/Bridge/components/VoteContent/VoteContentTitle.tsx'
+import VoteContentThumbnail from '../components/VoteContent/VoteContentThumbnail'
+import VoteContentCaption from '../components/VoteContent/VoteContentCaption'
+import VoteContentTitle from '../components/VoteContent/VoteContentTitle'
 export class VoteContentType implements ContentTypeImplementation {
   constructor(
     public id: string,
