@@ -5,7 +5,7 @@ type PropsType = {
 }
 
 const PostContentTitle = ({ title }: PropsType) => {
-  return <Typography.Title level={3}>Видео: {title}</Typography.Title>
+  return <Typography.Title level={3}>Голосование: {title}</Typography.Title>
 }
 
 export default PostContentTitle
