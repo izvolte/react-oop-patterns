@@ -1,7 +1,9 @@
 import CompositeComponent from './CompositeComponent'
+import { ValueLeaf, ValuesComposite } from '../type.ts'
 
 export interface FormComponent {
   isHidden?: string
+  onChange?: (value: boolean, name: string) => void
 }
 
 export interface LeafComponent extends FormComponent {
@@ -10,6 +12,7 @@ export interface LeafComponent extends FormComponent {
 }
 
 export interface CompositePropsType {
-  onChange?: (value: boolean, name: string) => void
+  onChangeValue?: (value: ValueLeaf, name: string) => void
+  onChangeValues?: (values: ValuesComposite) => void
   content: CompositeComponent
 }

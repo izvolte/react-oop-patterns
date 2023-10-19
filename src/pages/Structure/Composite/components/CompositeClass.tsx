@@ -10,9 +10,20 @@ import InputComponent from '../models/InputComponent'
 import RadioComponent from '../models/RadioComponent'
 import TextComponent from '../models/TextComponent'
 import { CompositePropsType } from '../models/type'
+import {
+  HiddenStates,
+  ValueLeaf,
+  ValuesComposite
+} from '@/pages/Structure/Composite/type.ts'
 
-const Composite = ({ content, onChange }: CompositePropsType) => {
-  const [hidden, setHidden] = React.useState<Record<string, boolean>>({})
+const Composite = ({
+  content,
+  onChangeValue = () => null,
+  onChangeValues = () => null
+}: CompositePropsType) => {
+  const [hidden, setHidden] = React.useState<HiddenStates>({})
+
+  const values = React.useRef<ValuesComposite>({})
 
   const { childrenComponents, dropdown, titleDropdown, listHiddenChildren } =
     content
@@ -20,16 +31,24 @@ const Composite = ({ content, onChange }: CompositePropsType) => {
   React.useEffect(() => {
     setHidden(listHiddenChildren(childrenComponents))
   }, [listHiddenChildren, childrenComponents])
-  const handleOnChangeCheckbox = (value: boolean, name?: string) => {
+  const handleOnChangeCheckbox = (value: ValueLeaf, name?: string) => {
     if (!name) return
 
-    if (name in hidden) {
-      setHidden(prev => ({ ...prev, [name]: value }))
+    if (name in hidden && typeof value === 'boolean') {
+      setHidden(prev => ({ ...prev, [name]: !value }))
     }
 
-    if (onChange) {
-      onChange(value, name)
+    onChangeValue(value, name)
+    values.current[name] = value
+    onChangeValues({ ...values.current })
+  }
+
+  const handleOnChangeChildrenValues = (valuesChildren: ValuesComposite) => {
+    values.current = {
+      ...values.current,
+      ...valuesChildren
     }
+    onChangeValues(values.current)
   }
 
   const components = (
@@ -44,7 +63,8 @@ const Composite = ({ content, onChange }: CompositePropsType) => {
             <Composite
               key={index}
               content={component}
-              onChange={handleOnChangeCheckbox}
+              onChangeValue={handleOnChangeCheckbox}
+              onChangeValues={handleOnChangeChildrenValues}
             />
           )
         }
@@ -63,7 +83,9 @@ const Composite = ({ content, onChange }: CompositePropsType) => {
             <Input
               key={index}
               title={component.title}
+              name={component.name}
               placeholder={component.placeholder}
+              onChange={value => handleOnChangeCheckbox(value, component.name)}
             />
           )
         }
@@ -74,6 +96,7 @@ const Composite = ({ content, onChange }: CompositePropsType) => {
               name={component.name}
               title={component.title}
               options={component.options}
+              onChange={value => handleOnChangeCheckbox(value, component.name)}
             />
           )
         }

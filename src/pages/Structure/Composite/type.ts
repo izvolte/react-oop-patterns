@@ -1,4 +1,5 @@
 export interface Leaf {
+  onChange?: (value: ValueLeaf) => void
   type?: 'text' | 'input' | 'radio' | 'checkbox'
 }
 
@@ -8,27 +9,28 @@ export interface TextComponent extends Leaf {
 }
 
 export interface InputComponent extends Leaf {
-  type?: 'input'
-  title?: string
+  name: string
   placeholder: string
+  title?: string
+  type?: 'input'
 }
 
 export interface RadioComponent extends Leaf {
-  type?: 'radio'
   name: string
-  title?: string
   options: string[]
+  title?: string
+  type?: 'radio'
 }
 
 export interface CheckboxComponent extends Leaf {
   type?: 'checkbox'
-  onChange?: (value: boolean) => void
   name: string
 }
 
 export type FormComponent = {
   isHidden?: string
-  onChange?: (value: boolean, name: string) => void
+  onChangeValue?: (value: ValueLeaf, name: string) => void
+  onChangeValues?: (values: ValuesComposite) => void
 }
 
 export type LeafComponent = FormComponent & {
@@ -45,14 +47,8 @@ export type CompositeComponent = FormComponent & {
   childrenComponents: (LeafComponent | CompositeComponent)[]
 }
 
-// export type HiddenState = {
-//   VK: boolean
-//   Instagram: boolean
-//   LinkedIn: boolean
-//   Telegram: boolean
-// }
+export type ValueLeaf = boolean | string
 
-// export type HiddenContext = {
-//   hidden: HiddenState
-//   setHidden: (name: string, visibility: boolean) => void
-// }
+export type ValuesComposite = Record<string, ValueLeaf>
+
+export type HiddenStates = Record<string, boolean>

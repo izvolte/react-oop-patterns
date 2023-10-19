@@ -4,7 +4,7 @@ import { Checkbox as CheckboxAntd } from 'antd'
 
 const Checkbox = ({ name, onChange = () => {} }: CheckboxComponent) => {
   const onChangeHandler = (event: CheckboxChangeEvent) => {
-    onChange(!event.target.checked)
+    onChange(event.target.checked)
   }
 
   return (

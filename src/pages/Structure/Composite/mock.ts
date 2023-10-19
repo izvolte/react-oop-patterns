@@ -29,7 +29,8 @@ export const mock: CompositeComponent = {
           content: {
             type: 'input',
             title: 'Введите ваше имя',
-            placeholder: 'введите имя'
+            placeholder: 'введите имя',
+            name: 'name'
           }
         },
         {

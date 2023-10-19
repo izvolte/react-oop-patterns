@@ -1,5 +1,10 @@
 import { Collapse, Space } from 'antd'
-import { CompositeComponent } from '../type'
+import {
+  CompositeComponent,
+  HiddenStates,
+  ValueLeaf,
+  ValuesComposite
+} from '../type'
 import Input from './Input'
 import Radio from './Radio'
 import Checkbox from './Checkbox'
@@ -11,26 +16,39 @@ const Composite = ({
   dropdown,
   titleDropdown,
   isComposite,
-  onChange = () => null
+  onChangeValue = () => null,
+  onChangeValues = () => null
 }: CompositeComponent) => {
-  const [hidden, setHidden] = React.useState<Record<string, boolean>>({})
+  const [hidden, setHidden] = React.useState<HiddenStates>({})
+
+  const values = React.useRef<ValuesComposite>({})
 
   React.useEffect(() => {
     if (!isComposite) return
     setHidden(
-      childrenComponents.reduce<Record<string, boolean>>((acc, current) => {
+      childrenComponents.reduce<HiddenStates>((acc, current) => {
         if (!current.isHidden) return acc
         acc[current.isHidden] = true
         return acc
       }, {})
     )
   }, [childrenComponents, isComposite])
-  const handleOnChangeCheckbox = (value: boolean, name: string) => {
-    if (name in hidden) {
-      setHidden(prev => ({ ...prev, [name]: value }))
+  const handleOnChangeCheckbox = (value: ValueLeaf, name: string) => {
+    if (name in hidden && typeof value === 'boolean') {
+      setHidden(prev => ({ ...prev, [name]: !value }))
     }
 
-    onChange(value, name)
+    onChangeValue(value, name)
+    values.current[name] = value
+    onChangeValues({ ...values.current })
+  }
+
+  const handleOnChangeChildrenValues = (valuesChildren: ValuesComposite) => {
+    values.current = {
+      ...values.current,
+      ...valuesChildren
+    }
+    onChangeValues(values.current)
   }
 
   const components = (
@@ -46,7 +64,8 @@ const Composite = ({
               dropdown={props.dropdown}
               titleDropdown={props.titleDropdown}
               childrenComponents={props.childrenComponents}
-              onChange={handleOnChangeCheckbox}
+              onChangeValue={handleOnChangeCheckbox}
+              onChangeValues={handleOnChangeChildrenValues}
             />
           )
 
@@ -68,7 +87,11 @@ const Composite = ({
                 <Input
                   key={index}
                   title={content.title}
+                  name={content.name}
                   placeholder={content.placeholder}
+                  onChange={value =>
+                    handleOnChangeCheckbox(value, content.name)
+                  }
                 />
               )
             case 'radio':
@@ -78,6 +101,9 @@ const Composite = ({
                   name={content.name}
                   title={content.title}
                   options={content.options}
+                  onChange={value =>
+                    handleOnChangeCheckbox(value, content.name)
+                  }
                 />
               )
             case 'text':
