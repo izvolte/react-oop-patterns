@@ -1,12 +1,11 @@
 import LeafComponent from './LeafComponent.ts'
 
-class TextComponent extends LeafComponent {
+class TextComponent implements LeafComponent {
+  public name = 'simple-text'
   constructor(
     public text: string,
-    isHidden?: string
-  ) {
-    super('simple-text', isHidden)
-  }
+    public isHidden?: string
+  ) {}
 }
 
 export default TextComponent

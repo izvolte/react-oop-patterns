@@ -1,12 +1,10 @@
 import LeafComponent from './LeafComponent'
 
-class CheckboxComponent extends LeafComponent {
+class CheckboxComponent implements LeafComponent {
   constructor(
     public name: string,
-    isHidden?: string
-  ) {
-    super(name, isHidden)
-  }
+    public isHidden?: string
+  ) {}
 }
 
 export default CheckboxComponent

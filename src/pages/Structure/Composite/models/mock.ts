@@ -12,7 +12,9 @@ mock.add(new TextComponent('Анкета пользователя'))
 
 const personalComposite = new CompositeComponent(true, 'Личная информация')
 
-personalComposite.add(new InputComponent('введите имя', 'Введите ваше имя'))
+personalComposite.add(
+  new InputComponent('введите имя', 'name', 'Введите ваше имя')
+)
 personalComposite.add(
   new RadioComponent('gender', ['Женский', 'Мужской', 'Unknown'], 'Ваш пол')
 )

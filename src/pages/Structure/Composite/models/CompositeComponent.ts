@@ -1,15 +1,13 @@
 import FormComponent from './FormComponent'
 
-class CompositeComponent extends FormComponent {
+class CompositeComponent implements FormComponent {
   public childrenComponents: FormComponent[] = []
 
   constructor(
     public dropdown = false,
     public titleDropdown?: string,
-    isHidden?: string
-  ) {
-    super(isHidden)
-  }
+    public isHidden?: string
+  ) {}
 
   public listHiddenChildren(
     childrenComponents: FormComponent[]

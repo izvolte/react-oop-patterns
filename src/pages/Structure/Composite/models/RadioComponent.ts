@@ -1,14 +1,12 @@
 import LeafComponent from './LeafComponent'
 
-class RadioComponent extends LeafComponent {
+class RadioComponent implements LeafComponent {
   constructor(
     public name: string,
     public options: string[],
     public title?: string,
-    isHidden?: string
-  ) {
-    super(name, isHidden)
-  }
+    public isHidden?: string
+  ) {}
 }
 
 export default RadioComponent

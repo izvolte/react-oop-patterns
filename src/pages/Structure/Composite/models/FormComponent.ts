@@ -1,5 +1,5 @@
-abstract class FormComponent {
-  protected constructor(public isHidden?: string) {}
+interface FormComponent {
+  isHidden?: string
 }
 
 export default FormComponent

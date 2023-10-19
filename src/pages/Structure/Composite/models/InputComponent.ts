@@ -1,14 +1,12 @@
 import LeafComponent from './LeafComponent'
 
-class InputComponent extends LeafComponent {
+class InputComponent implements LeafComponent {
   constructor(
     public placeholder: string,
+    public name: string,
     public title?: string,
-    name?: string,
-    isHidden?: string
-  ) {
-    super(name, isHidden)
-  }
+    public isHidden?: string
+  ) {}
 }
 
 export default InputComponent
