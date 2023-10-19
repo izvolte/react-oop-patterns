@@ -1,4 +1,4 @@
-import LeafComponent from './LeafComponent'
+import { LeafComponent } from './type'
 
 class CheckboxComponent implements LeafComponent {
   constructor(

@@ -1,4 +1,4 @@
-import FormComponent from './FormComponent'
+import { FormComponent } from './type'
 
 class CompositeComponent implements FormComponent {
   public childrenComponents: FormComponent[] = []

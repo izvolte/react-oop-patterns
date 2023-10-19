@@ -1,4 +1,4 @@
-import LeafComponent from './LeafComponent.ts'
+import { LeafComponent } from './type'
 
 class TextComponent implements LeafComponent {
   public name = 'simple-text'
