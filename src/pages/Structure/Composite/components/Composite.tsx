@@ -6,33 +6,32 @@ import Checkbox from './Checkbox'
 import Text from './Text'
 import React from 'react'
 
-const Composite = (props: CompositeComponent) => {
+const Composite = ({
+  childrenComponents,
+  dropdown,
+  titleDropdown,
+  isComposite,
+  onChange = () => null
+}: CompositeComponent) => {
   const [hidden, setHidden] = React.useState<Record<string, boolean>>({})
 
   React.useEffect(() => {
-    if (!props.isComposite) return
+    if (!isComposite) return
     setHidden(
-      props.childrenComponents.reduce<Record<string, boolean>>(
-        (acc, current) => {
-          if (!current.isHidden) return acc
-          acc[current.isHidden] = true
-          return acc
-        },
-        {}
-      )
+      childrenComponents.reduce<Record<string, boolean>>((acc, current) => {
+        if (!current.isHidden) return acc
+        acc[current.isHidden] = true
+        return acc
+      }, {})
     )
-  }, [props.childrenComponents, props.isComposite])
+  }, [childrenComponents, isComposite])
   const handleOnChangeCheckbox = (value: boolean, name: string) => {
     if (name in hidden) {
       setHidden(prev => ({ ...prev, [name]: value }))
     }
 
-    if (props?.onChange) {
-      props?.onChange(value, name)
-    }
+    onChange(value, name)
   }
-
-  const { childrenComponents, dropdown, titleDropdown } = props
 
   const components = (
     <Space direction='vertical'>
@@ -57,6 +56,7 @@ const Composite = (props: CompositeComponent) => {
             case 'checkbox':
               return (
                 <Checkbox
+                  key={index}
                   name={content.name}
                   onChange={value =>
                     handleOnChangeCheckbox(value, content.name)
@@ -66,6 +66,7 @@ const Composite = (props: CompositeComponent) => {
             case 'input':
               return (
                 <Input
+                  key={index}
                   title={content.title}
                   placeholder={content.placeholder}
                 />
@@ -73,13 +74,14 @@ const Composite = (props: CompositeComponent) => {
             case 'radio':
               return (
                 <Radio
+                  key={index}
                   name={content.name}
                   title={content.title}
                   options={content.options}
                 />
               )
             case 'text':
-              return <Text text={content.text} />
+              return <Text key={index} text={content.text} />
             default:
               throw new Error('Тип контента не найден')
           }

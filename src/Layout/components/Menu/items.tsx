@@ -80,7 +80,7 @@ export const MENU_ITEMS: MenuItem[] = [
         label: 'Мост Classic'
       },
       {
-        key: Path.CompositeFC,
+        key: Path.Composite,
         icon: <ApartmentOutlined />,
         label: 'Компоновщик'
       }

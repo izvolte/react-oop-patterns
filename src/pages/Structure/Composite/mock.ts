@@ -11,14 +11,14 @@ export const mock: CompositeComponent = {
         text: 'Анкета пользователя'
       }
     },
-    {
-      isComposite: false,
-      isHidden: 'VK',
-      content: {
-        type: 'text',
-        text: 'Анкета пользователя'
-      }
-    },
+    // {
+    //   isComposite: false,
+    //   isHidden: 'VK',
+    //   content: {
+    //     type: 'text',
+    //     text: 'Анкета пользователя'
+    //   }
+    // },
     {
       isComposite: true,
       dropdown: true,
