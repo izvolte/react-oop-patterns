@@ -7,7 +7,7 @@ import { Singleton } from '@/pages/Creational/Singleton'
 import { Builder } from '@/pages/Creational/Builder'
 import { AdapterFC, AdapterClassic } from '@/pages/Structure/Adapter'
 import { BridgeClassic, BridgeFC } from '@/pages/Structure/Bridge'
-import { Composite, CompositeClassic } from '@/pages/Structure/Composite'
+import { CompositeFC, CompositeClassic } from '@/pages/Structure/Composite'
 export const routes = (): RouteObject[] => {
   return [
     {
@@ -59,8 +59,12 @@ export const routes = (): RouteObject[] => {
           path: Path.BridgeClassic
         },
         {
-          element: <Composite />,
-          path: Path.Composite
+          element: <CompositeFC />,
+          path: Path.CompositeFC
+        },
+        {
+          element: <CompositeClassic />,
+          path: Path.CompositeClassic
         }
       ]
     },

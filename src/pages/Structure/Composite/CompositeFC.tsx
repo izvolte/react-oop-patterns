@@ -2,7 +2,7 @@ import { Button, Form, Space } from 'antd'
 import CompositeComponent from './components/Composite'
 import { mock } from './mock'
 
-const Composite = () => {
+const CompositeFC = () => {
   return (
     <Form layout='vertical'>
       <Space direction='vertical'>
@@ -17,4 +17,4 @@ const Composite = () => {
   )
 }
 
-export default Composite
+export default CompositeFC
