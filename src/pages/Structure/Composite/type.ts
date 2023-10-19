@@ -26,24 +26,24 @@ export interface CheckboxComponent extends Leaf {
   name: string
 }
 
-export type LeafComponent = {
+export type FormComponent = {
+  isHidden?: string
+  onChange?: (value: boolean, name: string) => void
+}
+
+export type LeafComponent = FormComponent & {
   isComposite: false
   childrenComponents?: []
   content: TextComponent | InputComponent | RadioComponent | CheckboxComponent
 }
 
-export type CompositeComponent = {
+export type CompositeComponent = FormComponent & {
   name?: string
   isComposite: true
   dropdown: boolean
   titleDropdown?: string
-  childrenComponents: FormComponent[]
+  childrenComponents: (LeafComponent | CompositeComponent)[]
 }
-
-export type FormComponent = {
-  isHidden?: [string, boolean]
-  onChange?: (value: boolean, name: string) => void
-} & (LeafComponent | CompositeComponent)
 
 // export type HiddenState = {
 //   VK: boolean

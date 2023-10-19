@@ -1,12 +1,12 @@
 import { Collapse, Space } from 'antd'
-import { FormComponent } from '../type'
+import { CompositeComponent } from '../type'
 import Input from './Input'
 import Radio from './Radio'
 import Checkbox from './Checkbox'
 import Text from './Text'
 import React from 'react'
 
-const Composite = (props: FormComponent) => {
+const Composite = (props: CompositeComponent) => {
   const [hidden, setHidden] = React.useState<Record<string, boolean>>({})
 
   React.useEffect(() => {
@@ -15,7 +15,7 @@ const Composite = (props: FormComponent) => {
       props.childrenComponents.reduce<Record<string, boolean>>(
         (acc, current) => {
           if (!current.isHidden) return acc
-          acc[current.isHidden[0]] = current.isHidden[1]
+          acc[current.isHidden] = true
           return acc
         },
         {}
@@ -32,40 +32,15 @@ const Composite = (props: FormComponent) => {
     }
   }
 
-  if (!props.isComposite) {
-    const { content } = props
-    switch (content.type) {
-      case 'checkbox':
-        return (
-          <Checkbox
-            name={content.name}
-            onChange={value => handleOnChangeCheckbox(value, content.name)}
-          />
-        )
-      case 'input':
-        return <Input title={content.title} placeholder={content.placeholder} />
-      case 'radio':
-        return (
-          <Radio
-            name={content.name}
-            title={content.title}
-            options={content.options}
-          />
-        )
-      case 'text':
-        return <Text text={content.text} />
-      default:
-        throw new Error('Тип контента не найден')
-    }
-  }
-
   const { childrenComponents, dropdown, titleDropdown } = props
 
   const components = (
     <Space direction='vertical'>
-      {childrenComponents.map((props, index) =>
-        !props.isHidden || !hidden[props.isHidden[0]] ? (
-          props.isComposite ? (
+      {childrenComponents.map((props, index) => {
+        const visibility = !props.isHidden || !hidden[props.isHidden]
+
+        if (props.isComposite && visibility)
+          return (
             <Composite
               key={index}
               isComposite={props.isComposite}
@@ -74,31 +49,54 @@ const Composite = (props: FormComponent) => {
               childrenComponents={props.childrenComponents}
               onChange={handleOnChangeCheckbox}
             />
-          ) : (
-            <Composite
-              key={index}
-              onChange={handleOnChangeCheckbox}
-              isComposite={props.isComposite}
-              content={props.content}
-            />
           )
-        ) : null
-      )}
+
+        if (!props.isComposite && visibility) {
+          const { content } = props
+          switch (content.type) {
+            case 'checkbox':
+              return (
+                <Checkbox
+                  name={content.name}
+                  onChange={value =>
+                    handleOnChangeCheckbox(value, content.name)
+                  }
+                />
+              )
+            case 'input':
+              return (
+                <Input
+                  title={content.title}
+                  placeholder={content.placeholder}
+                />
+              )
+            case 'radio':
+              return (
+                <Radio
+                  name={content.name}
+                  title={content.title}
+                  options={content.options}
+                />
+              )
+            case 'text':
+              return <Text text={content.text} />
+            default:
+              throw new Error('Тип контента не найден')
+          }
+        }
+        return null
+      })}
     </Space>
   )
 
-  return (
-    <Space direction='vertical'>
-      {dropdown ? (
-        <Collapse
-          items={[
-            { key: titleDropdown, label: titleDropdown, children: components }
-          ]}
-        />
-      ) : (
-        components
-      )}
-    </Space>
+  return dropdown ? (
+    <Collapse
+      items={[
+        { key: titleDropdown, label: titleDropdown, children: components }
+      ]}
+    />
+  ) : (
+    components
   )
 }
 

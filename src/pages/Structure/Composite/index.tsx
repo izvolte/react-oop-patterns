@@ -1,4 +1,3 @@
-import CompositeClassic from './CompositeClassic.tsx'
-import CompositeFC from './CompositeFC.tsx'
+import Composite from './Composite.tsx'
 
-export { CompositeFC, CompositeClassic }
+export { Composite }

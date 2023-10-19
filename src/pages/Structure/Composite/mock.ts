@@ -13,7 +13,7 @@ export const mock: CompositeComponent = {
     },
     {
       isComposite: false,
-      isHidden: ['VK', true],
+      isHidden: 'VK',
       content: {
         type: 'text',
         text: 'Анкета пользователя'
@@ -63,7 +63,7 @@ export const mock: CompositeComponent = {
           }
         },
         {
-          isHidden: ['Instagram', true],
+          isHidden: 'Instagram',
           dropdown: true,
           titleDropdown: 'Instagram',
           isComposite: true,
@@ -92,7 +92,7 @@ export const mock: CompositeComponent = {
           }
         },
         {
-          isHidden: ['VK', true],
+          isHidden: 'VK',
           dropdown: true,
           titleDropdown: 'VK',
           isComposite: true,
@@ -121,7 +121,7 @@ export const mock: CompositeComponent = {
           }
         },
         {
-          isHidden: ['Telegram', true],
+          isHidden: 'Telegram',
           dropdown: true,
           titleDropdown: 'Telegram',
           isComposite: true,
@@ -151,7 +151,7 @@ export const mock: CompositeComponent = {
         },
 
         {
-          isHidden: ['LinkedIn', true],
+          isHidden: 'LinkedIn',
           dropdown: true,
           titleDropdown: 'LinkedIn',
           isComposite: true,

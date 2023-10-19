@@ -1,12 +1,12 @@
 import { Button, Form, Space } from 'antd'
-import Composite from './components/Composite'
+import CompositeComponent from './components/Composite'
 import { mock } from './mock'
 
-const CompositeFC = () => {
+const Composite = () => {
   return (
     <Form layout='vertical'>
       <Space direction='vertical'>
-        <Composite
+        <CompositeComponent
           isComposite={mock.isComposite}
           childrenComponents={mock.childrenComponents}
           dropdown={mock.dropdown}
@@ -17,4 +17,4 @@ const CompositeFC = () => {
   )
 }
 
-export default CompositeFC
+export default Composite

@@ -7,6 +7,10 @@ const Checkbox = ({ name, onChange = () => {} }: CheckboxComponent) => {
     onChange(!event.target.checked)
   }
 
-  return <CheckboxAntd onChange={onChangeHandler}>{name}</CheckboxAntd>
+  return (
+    <CheckboxAntd name={name} onChange={onChangeHandler}>
+      {name}
+    </CheckboxAntd>
+  )
 }
 export default Checkbox

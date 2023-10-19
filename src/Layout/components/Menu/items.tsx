@@ -82,12 +82,7 @@ export const MENU_ITEMS: MenuItem[] = [
       {
         key: Path.CompositeFC,
         icon: <ApartmentOutlined />,
-        label: 'Компоновщик FC'
-      },
-      {
-        key: Path.CompositeClassic,
-        icon: <ApartmentOutlined />,
-        label: 'Компоновщик Classic'
+        label: 'Компоновщик'
       }
     ]
   }
