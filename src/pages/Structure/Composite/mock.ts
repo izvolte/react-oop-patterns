@@ -16,7 +16,7 @@ export const mock: CompositeComponent = {
     //   isHidden: 'VK',
     //   content: {
     //     type: 'text',
-    //     text: 'Анкета пользователя'
+    //     text: 'TEST TEXT'
     //   }
     // },
     {

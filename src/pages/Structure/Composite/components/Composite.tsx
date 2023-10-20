@@ -2,6 +2,7 @@ import { Collapse, Space } from 'antd'
 import {
   CompositeComponent,
   HiddenStates,
+  LeafComponent,
   ValueLeaf,
   ValuesComposite
 } from '../type'
@@ -11,29 +12,30 @@ import Checkbox from './Checkbox'
 import Text from './Text'
 import React from 'react'
 
+const prepareHidden = (
+  childrenComponents: (CompositeComponent | LeafComponent)[]
+) => {
+  return childrenComponents.reduce<HiddenStates>((acc, current) => {
+    if (!current.isHidden) return acc
+    acc[current.isHidden] = true
+    return acc
+  }, {})
+}
+
 const Composite = ({
   childrenComponents,
   dropdown,
   titleDropdown,
-  isComposite,
   onChangeValue = () => null,
   onChangeValues = () => null
 }: CompositeComponent) => {
-  const [hidden, setHidden] = React.useState<HiddenStates>({})
+  const [hidden, setHidden] = React.useState<HiddenStates>(() =>
+    prepareHidden(childrenComponents)
+  )
 
   const values = React.useRef<ValuesComposite>({})
 
-  React.useEffect(() => {
-    if (!isComposite) return
-    setHidden(
-      childrenComponents.reduce<HiddenStates>((acc, current) => {
-        if (!current.isHidden) return acc
-        acc[current.isHidden] = true
-        return acc
-      }, {})
-    )
-  }, [childrenComponents, isComposite])
-  const handleOnChangeCheckbox = (value: ValueLeaf, name: string) => {
+  const handleOnChangeValue = (value: ValueLeaf, name: string) => {
     if (name in hidden && typeof value === 'boolean') {
       setHidden(prev => ({ ...prev, [name]: !value }))
     }
@@ -64,7 +66,7 @@ const Composite = ({
               dropdown={props.dropdown}
               titleDropdown={props.titleDropdown}
               childrenComponents={props.childrenComponents}
-              onChangeValue={handleOnChangeCheckbox}
+              onChangeValue={handleOnChangeValue}
               onChangeValues={handleOnChangeChildrenValues}
             />
           )
@@ -77,9 +79,7 @@ const Composite = ({
                 <Checkbox
                   key={index}
                   name={content.name}
-                  onChange={value =>
-                    handleOnChangeCheckbox(value, content.name)
-                  }
+                  onChange={value => handleOnChangeValue(value, content.name)}
                 />
               )
             case 'input':
@@ -89,9 +89,7 @@ const Composite = ({
                   title={content.title}
                   name={content.name}
                   placeholder={content.placeholder}
-                  onChange={value =>
-                    handleOnChangeCheckbox(value, content.name)
-                  }
+                  onChange={value => handleOnChangeValue(value, content.name)}
                 />
               )
             case 'radio':
@@ -101,9 +99,7 @@ const Composite = ({
                   name={content.name}
                   title={content.title}
                   options={content.options}
-                  onChange={value =>
-                    handleOnChangeCheckbox(value, content.name)
-                  }
+                  onChange={value => handleOnChangeValue(value, content.name)}
                 />
               )
             case 'text':

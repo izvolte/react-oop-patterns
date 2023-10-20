@@ -21,17 +21,15 @@ const Composite = ({
   onChangeValue = () => null,
   onChangeValues = () => null
 }: CompositePropsType) => {
-  const [hidden, setHidden] = React.useState<HiddenStates>({})
-
-  const values = React.useRef<ValuesComposite>({})
-
   const { childrenComponents, dropdown, titleDropdown, listHiddenChildren } =
     content
 
-  React.useEffect(() => {
-    setHidden(listHiddenChildren(childrenComponents))
-  }, [listHiddenChildren, childrenComponents])
-  const handleOnChangeCheckbox = (value: ValueLeaf, name?: string) => {
+  const [hidden, setHidden] = React.useState<HiddenStates>(() =>
+    listHiddenChildren(childrenComponents)
+  )
+  const values = React.useRef<ValuesComposite>({})
+
+  const handleOnChange = (value: ValueLeaf, name?: string) => {
     if (!name) return
 
     if (name in hidden && typeof value === 'boolean') {
@@ -63,7 +61,7 @@ const Composite = ({
             <Composite
               key={index}
               content={component}
-              onChangeValue={handleOnChangeCheckbox}
+              onChangeValue={handleOnChange}
               onChangeValues={handleOnChangeChildrenValues}
             />
           )
@@ -74,7 +72,7 @@ const Composite = ({
             <Checkbox
               key={index}
               name={component.name}
-              onChange={value => handleOnChangeCheckbox(value, component.name)}
+              onChange={value => handleOnChange(value, component.name)}
             />
           )
         }
@@ -85,7 +83,7 @@ const Composite = ({
               title={component.title}
               name={component.name}
               placeholder={component.placeholder}
-              onChange={value => handleOnChangeCheckbox(value, component.name)}
+              onChange={value => handleOnChange(value, component.name)}
             />
           )
         }
@@ -96,7 +94,7 @@ const Composite = ({
               name={component.name}
               title={component.title}
               options={component.options}
-              onChange={value => handleOnChangeCheckbox(value, component.name)}
+              onChange={value => handleOnChange(value, component.name)}
             />
           )
         }
