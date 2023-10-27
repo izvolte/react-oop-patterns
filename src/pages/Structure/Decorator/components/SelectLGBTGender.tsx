@@ -1,10 +1,10 @@
-import { SelectComponent, SelectProps } from '../type'
+import { DecoratorSelectComponent } from '../type'
 
 const lgbt = ['Лесбиянка', 'Гей', 'Бисексуал', 'Трансгендер']
 
-const withLGBTGender =
-  (Select: SelectComponent) =>
-  ({ options = [], label = '' }: SelectProps) => {
+const withLGBTGender: DecoratorSelectComponent =
+  Select =>
+  ({ options = [], label = '' }) => {
     return <Select label={'LGBT' + label} options={[...options, ...lgbt]} />
   }
 
