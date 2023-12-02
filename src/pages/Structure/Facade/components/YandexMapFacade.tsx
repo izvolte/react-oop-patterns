@@ -23,7 +23,7 @@ const YandexMapFacade = ({ initialCoordinates, zoomLevel }) => {
       })
     }
 
-    if (typeof ymaps === 'undefined') {
+    if (typeof window.ymaps === 'undefined') {
       loadYandexMapsApi()
     } else {
       window.ymaps.ready(initializeMap)

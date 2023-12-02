@@ -4,7 +4,7 @@ const Facade = () => {
   return (
     <YandexMapFacade
       initialCoordinates={[55.796127, 49.106414]}
-      zoomLevel={11}
+      zoomLevel={16}
     />
   )
 }
