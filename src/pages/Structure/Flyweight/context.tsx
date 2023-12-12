@@ -1,5 +1,6 @@
 import React from 'react'
 import { Modal, ModalProps } from 'antd'
+import { ExclamationCircleOutlined } from '@ant-design/icons'
 
 type ModalState = ModalProps & {
   content?: string
@@ -20,9 +21,12 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
   const refResolve = React.useRef<(value?: void | PromiseLike<void>) => void>(
     () => null
   )
+
   const refReject = React.useRef<() => void>(() => null)
 
   const showModal = (content, props = {}): Promise<void> => {
+    refReject.current()
+
     setModalProps({ ...props, content })
     setIsVisible(true)
 
@@ -53,10 +57,11 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
     <ModalContext.Provider value={{ showModal, hideModal }}>
       {children}
       <Modal
-        visible={isVisible}
+        open={isVisible}
         onCancel={onCancel}
         onOk={onConfirm}
         {...modalProps}
+        cancelText='destroy'
       >
         {modalContent}
       </Modal>

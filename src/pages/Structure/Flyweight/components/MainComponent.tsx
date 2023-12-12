@@ -14,7 +14,7 @@ const MainComponent = () => {
   }
 
   const onClick2 = () => {
-    showModal(<p>This is the modal 2 content!</p>, {
+    showModal(<p onClick={onClick}>This is the modal 2 content!</p>, {
       title: 'Custom Title'
     })
       .then(onClick2)
