@@ -1,6 +1,5 @@
 import React from 'react'
 import { Modal, ModalProps } from 'antd'
-import { ExclamationCircleOutlined } from '@ant-design/icons'
 
 type ModalState = ModalProps & {
   content?: string
