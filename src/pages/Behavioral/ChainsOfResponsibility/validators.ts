@@ -1,6 +1,6 @@
-export interface Validator {
+export interface Validator<T = string> {
   setNext(validator: Validator): Validator
-  validate(request: string): string | null
+  validate(request: T): T | null
 }
 
 abstract class BaseValidator implements Validator {
