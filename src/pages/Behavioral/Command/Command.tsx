@@ -39,26 +39,26 @@ const MainCommand = () => {
   const addNewTodo = () => {
     if (!newTodoText) return
 
-    const newTodo: TodoItem = {
-      id: Date.now(),
-      text: newTodoText,
-      isCompleted: false
-    }
-
-    executeCommand(new AddTodoCommand(todos, newTodo))
+    executeCommand(
+      new AddTodoCommand(todos, {
+        id: Date.now(),
+        text: newTodoText,
+        isCompleted: false
+      })
+    )
     setNewTodoText('')
   }
 
   const onChangeCompleteCheckbox = (item: TodoItem) => () => {
-    const command = item.isCompleted
-      ? new UncompleteTodoCommand(todos, item.id)
-      : new CompleteTodoCommand(todos, item.id)
-    executeCommand(command)
+    executeCommand(
+      item.isCompleted
+        ? new UncompleteTodoCommand(todos, item.id)
+        : new CompleteTodoCommand(todos, item.id)
+    )
   }
 
   const onDeleteTodo = (item: TodoItem) => () => {
-    const command = new DeleteTodoCommand(todos, item.id)
-    executeCommand(command)
+    executeCommand(new DeleteTodoCommand(todos, item.id))
   }
 
   return (

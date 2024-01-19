@@ -5,6 +5,7 @@ export interface TodoItem {
 }
 
 export interface Command {
+  readonly todos: TodoItem[]
   execute(): TodoItem[]
   undo(): TodoItem[]
 }
