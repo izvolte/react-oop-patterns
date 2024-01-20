@@ -1,3 +1,5 @@
+import { TodoList } from './models'
+
 export interface TodoItem {
   id: number
   text: string
@@ -5,7 +7,7 @@ export interface TodoItem {
 }
 
 export interface Command {
-  readonly todos: TodoItem[]
+  readonly todoList: TodoList
   execute(): TodoItem[]
   undo(): TodoItem[]
 }

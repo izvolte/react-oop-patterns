@@ -5,7 +5,8 @@ import {
   AddTodoCommand,
   DeleteTodoCommand,
   CompleteTodoCommand,
-  UncompleteTodoCommand
+  UncompleteTodoCommand,
+  TodoList
 } from './models'
 
 const MainCommand = () => {
@@ -13,6 +14,8 @@ const MainCommand = () => {
   const [history, setHistory] = useState<Command[]>([])
   const [future, setFuture] = useState<Command[]>([])
   const [newTodoText, setNewTodoText] = useState('')
+
+  const todoList = new TodoList(todos)
 
   const executeCommand = (command: Command) => {
     setHistory([...history, command])
@@ -40,7 +43,7 @@ const MainCommand = () => {
     if (!newTodoText) return
 
     executeCommand(
-      new AddTodoCommand(todos, {
+      new AddTodoCommand(todoList, {
         id: Date.now(),
         text: newTodoText,
         isCompleted: false
@@ -52,13 +55,13 @@ const MainCommand = () => {
   const onChangeCompleteCheckbox = (item: TodoItem) => () => {
     executeCommand(
       item.isCompleted
-        ? new UncompleteTodoCommand(todos, item.id)
-        : new CompleteTodoCommand(todos, item.id)
+        ? new UncompleteTodoCommand(todoList, item.id)
+        : new CompleteTodoCommand(todoList, item.id)
     )
   }
 
   const onDeleteTodo = (item: TodoItem) => () => {
-    executeCommand(new DeleteTodoCommand(todos, item.id))
+    executeCommand(new DeleteTodoCommand(todoList, item.id))
   }
 
   return (
