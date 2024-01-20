@@ -9,13 +9,13 @@ import {
   TodoList
 } from './models'
 
+const todoList = new TodoList([])
+
 const MainCommand = () => {
   const [todos, setTodos] = useState<TodoItem[]>([])
   const [history, setHistory] = useState<Command[]>([])
   const [future, setFuture] = useState<Command[]>([])
   const [newTodoText, setNewTodoText] = useState('')
-
-  const todoList = new TodoList(todos)
 
   const executeCommand = (command: Command) => {
     setHistory([...history, command])
