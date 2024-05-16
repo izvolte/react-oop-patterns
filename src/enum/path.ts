@@ -21,5 +21,6 @@ export const enum Path {
 
   Behavior = 'behavior',
   ChainsOfResponsibility = 'behavior/chains-of-responsibility',
-  Command = 'behavior/command'
+  Command = 'behavior/command',
+  Iterator = 'behavior/iterator'
 }

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { RouteObject } from 'react-router-dom'
 import { Path } from '@/enum/path'
+import Iterator from '@/pages/Behavioral/Iterator'
 
 const Main = React.lazy(() => import('@/pages/Creational/FactoryMethod'))
 const AbstractFactory = React.lazy(
@@ -127,6 +128,10 @@ export const routes = (): RouteObject[] => {
         {
           element: <Command />,
           path: Path.Command
+        },
+        {
+          element: <Iterator />,
+          path: Path.Iterator
         }
       ]
     },

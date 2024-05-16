@@ -1,107 +1,32 @@
-import React, { useState } from 'react'
-import { Button, List, Input, Checkbox, Space } from 'antd'
-import { TodoItem, Command } from './types'
-import {
-  AddTodoCommand,
-  DeleteTodoCommand,
-  CompleteTodoCommand,
-  UncompleteTodoCommand,
-  TodoList
-} from './models'
+import { Button, Card, Row, Col, Image } from 'antd'
+import { useIterator } from './hooks';
 
-const todoList = new TodoList([])
+const data = [
+  { src: 'https://cataas.com/cat?cat=1', title: 'Kitten 1' },
+  { src: 'https://cataas.com/cat?cat=2', title: 'Kitten 2' },
+  { src: 'https://cataas.com/cat?cat=3', title: 'Kitten 3' },
+  { src: 'https://cataas.com/cat?cat=4', title: 'Kitten 4' }
+];
 
-const MainCommand = () => {
-  const [todos, setTodos] = useState<TodoItem[]>([])
-  const [history, setHistory] = useState<Command[]>([])
-  const [future, setFuture] = useState<Command[]>([])
-  const [newTodoText, setNewTodoText] = useState('')
-
-  const executeCommand = (command: Command) => {
-    setHistory([...history, command])
-    setFuture([])
-    setTodos([...command.execute()])
-  }
-
-  const undo = () => {
-    const command = history.pop()
-    if (command) {
-      setFuture([...future, command])
-      setTodos([...command.undo()])
-    }
-  }
-
-  const redo = () => {
-    const command = future.pop()
-    if (command) {
-      setHistory([...history, command])
-      setTodos([...command.execute()])
-    }
-  }
-
-  const addNewTodo = () => {
-    if (!newTodoText) return
-
-    executeCommand(
-      new AddTodoCommand(todoList, {
-        id: Date.now(),
-        text: newTodoText,
-        isCompleted: false
-      })
-    )
-    setNewTodoText('')
-  }
-
-  const onChangeCompleteCheckbox = (item: TodoItem) => () => {
-    executeCommand(
-      item.isCompleted
-        ? new UncompleteTodoCommand(todoList, item.id)
-        : new CompleteTodoCommand(todoList, item.id)
-    )
-  }
-
-  const onDeleteTodo = (item: TodoItem) => () => {
-    executeCommand(new DeleteTodoCommand(todoList, item.id))
-  }
+const Iterator = () => {
+  const { current, next, previous, index } = useIterator(data);
 
   return (
-    <Space direction='vertical' style={{ width: '100%' }}>
-      <Input
-        placeholder='Add new todo'
-        value={newTodoText}
-        onChange={e => setNewTodoText(e.target.value)}
-        onPressEnter={addNewTodo}
-      />
-      <Space>
-        <Button onClick={addNewTodo} disabled={!newTodoText}>
-          Add Todo
-        </Button>
-        <Button onClick={undo} disabled={history.length === 0}>
-          Undo
-        </Button>
-        <Button onClick={redo} disabled={future.length === 0}>
-          Redo
-        </Button>
-      </Space>
+    <div style={{ padding: 20 }}>
+      <Card
+        cover={<Image alt={current.title} src={current.src} />}
+        style={{ width: 300, margin: 'auto' }}
+      >
+        <Card.Meta title={current.title} description={`Image ${index + 1} of ${data.length}`} />
+      </Card>
+      <Row justify="center" style={{ marginTop: 20 }}>
+        <Col>
+          <Button onClick={previous} style={{ marginRight: 10 }}>Previous</Button>
+          <Button onClick={next}>Next</Button>
+        </Col>
+      </Row>
+    </div>
+  );
+};
 
-      <List
-        dataSource={todos}
-        renderItem={item => (
-          <List.Item
-            actions={[
-              <Checkbox
-                checked={item.isCompleted}
-                onChange={onChangeCompleteCheckbox(item)}
-              />,
-              <Button onClick={onDeleteTodo(item)}>Delete</Button>
-            ]}
-          >
-            {item.text}
-          </List.Item>
-        )}
-      />
-    </Space>
-  )
-}
-
-export default MainCommand
+export default Iterator;
