@@ -7,20 +7,18 @@ const AdapterFC = () => {
 
   if (!userData || !userInfo) return 'загрузка...'
 
-
   const { id, personal, performance } = userData
 
   const { isActive, avatarUrl } = userInfo
 
-
   return (
-      <UserCardAdapter
-          id={id}
-          personal={personal}
-          performance={performance}
-          isActive={isActive}
-          avatarUrl={avatarUrl}
-      />
+    <UserCardAdapter
+      id={id}
+      personal={personal}
+      performance={performance}
+      isActive={isActive}
+      avatarUrl={avatarUrl}
+    />
   )
 }
 

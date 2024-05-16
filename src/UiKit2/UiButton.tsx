@@ -1,19 +1,19 @@
 export interface Props {
-  onClick: () => void;
-  width?: string;
+  onClick: () => void
+  width?: string
 }
 
 const UiButton = ({ onClick, width }: Props) => {
   const click = () => {
-    alert("Новая кнопка нажата");
-    onClick();
-  };
+    alert('Новая кнопка нажата')
+    onClick()
+  }
 
   return (
-    <button onClick={click} style={{ backgroundColor: "grey", width }}>
+    <button onClick={click} style={{ backgroundColor: 'grey', width }}>
       Далее 2
     </button>
-  );
-};
+  )
+}
 
-export default UiButton;
+export default UiButton

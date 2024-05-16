@@ -3,7 +3,6 @@ import withGender from './components/SelectGender.tsx'
 import withLGBTGender from './components/SelectLGBTGender.tsx'
 import withLGBTPlusGender from './components/SelectLGBTPlusGender.tsx'
 
-
 const SelectGender = withGender(Select)
 const SelectLBGTGender = withLGBTGender(SelectGender)
 const SelectLBGTPlusGender = withLGBTPlusGender(SelectLBGTGender)
@@ -12,7 +11,7 @@ const SelectTrueLBGTGender = withLGBTPlusGender(withLGBTGender(Select))
 const Decorator = () => {
   return (
     <>
-      <SelectGender/>
+      <SelectGender />
       <SelectLBGTGender />
       <SelectLBGTPlusGender />
       <SelectTrueLBGTGender />
