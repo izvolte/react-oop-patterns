@@ -17,7 +17,8 @@ import {
   LockOutlined,
   HourglassOutlined,
   MailOutlined,
-  FieldNumberOutlined
+  FieldNumberOutlined,
+  ClusterOutlined
 } from '@ant-design/icons'
 import { MenuProps } from 'antd'
 
@@ -141,6 +142,11 @@ export const MENU_ITEMS: MenuItem[] = [
         key: Path.Iterator,
         icon: <FieldNumberOutlined />,
         label: 'Итератор'
+      },
+      {
+        key: Path.Mediator,
+        icon: <ClusterOutlined />,
+        label: 'Посредник'
       }
     ]
   }
