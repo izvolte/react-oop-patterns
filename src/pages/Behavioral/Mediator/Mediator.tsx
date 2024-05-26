@@ -1,6 +1,5 @@
-import { useContext, } from 'react';
 import { Button, Card, Layout } from 'antd';
-import { MediatorContext, MediatorProvider, useMediator } from './context'
+import { MediatorProvider, useMediator } from './context'
 
 const { Content } = Layout;
 
@@ -18,13 +17,7 @@ const ComponentA = () => {
 };
 
 const ComponentB = () => {
-  const context = useContext(MediatorContext);
-
-  if (!context) {
-    throw new Error('ComponentB must be used within a MediatorProvider');
-  }
-
-  const { state } = context;
+  const { state } = useMediator();
 
   return (
     <Card title="Component B">
