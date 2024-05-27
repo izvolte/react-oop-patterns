@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import 'antd/dist/reset.css'
 import './global.css'
-import React from 'react'
 
 const queryClient = new QueryClient()
 

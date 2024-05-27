@@ -34,7 +34,7 @@ export const useMediator = () => {
   const context = useContext(MediatorContext);
 
   if (!context) {
-    throw new Error('ComponentA must be used within a MediatorProvider');
+    throw new Error('Component must be used within a MediatorProvider');
   }
 
   return context
