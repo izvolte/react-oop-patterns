@@ -31,7 +31,7 @@ export class TodoList {
 }
 
 export class AddTodoCommand implements Command {
-  private todoList: TodoList
+  todoList: TodoList
   private newTodo: TodoItem
 
   constructor(todoList: TodoList, newTodo: TodoItem) {
@@ -51,7 +51,7 @@ export class AddTodoCommand implements Command {
 }
 
 export class DeleteTodoCommand implements Command {
-  private todoList: TodoList
+  todoList: TodoList
   private id: number
   private deletedTodo: TodoItem | null
 
@@ -76,7 +76,7 @@ export class DeleteTodoCommand implements Command {
 }
 
 export class CompleteTodoCommand implements Command {
-  private todoList: TodoList
+  todoList: TodoList
   private id: number
 
   constructor(todoList: TodoList, id: number) {
@@ -96,7 +96,7 @@ export class CompleteTodoCommand implements Command {
 }
 
 export class UncompleteTodoCommand implements Command {
-  private readonly todoList: TodoList
+  readonly todoList: TodoList
   private readonly id: number
 
   constructor(todoList: TodoList, id: number) {
