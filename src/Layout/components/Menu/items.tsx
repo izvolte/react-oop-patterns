@@ -18,7 +18,7 @@ import {
   HourglassOutlined,
   MailOutlined,
   FieldNumberOutlined,
-  ClusterOutlined
+  ClusterOutlined, SaveOutlined
 } from '@ant-design/icons'
 import { MenuProps } from 'antd'
 
@@ -147,6 +147,19 @@ export const MENU_ITEMS: MenuItem[] = [
         key: Path.Mediator,
         icon: <ClusterOutlined />,
         label: 'Посредник'
+      },
+      {
+        key: Path.Memento,
+        icon: <SaveOutlined />,
+        label: 'Снимок'
+      },
+      {
+        key: Path.MementoClassic,
+        icon:
+          <div style={{ transform: 'rotateY(180deg)' }}>
+            <SaveOutlined />
+          </div>,
+        label: 'Снимко Classic'
       }
     ]
   }

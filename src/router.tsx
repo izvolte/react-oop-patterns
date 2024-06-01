@@ -3,6 +3,8 @@ import { RouteObject } from 'react-router-dom'
 import { Path } from '@/enum/path'
 import Iterator from '@/pages/Behavioral/Iterator'
 import Mediator from '@/pages/Behavioral/Mediator'
+import Memento from '@/pages/Behavioral/Memento/Memento.tsx'
+import MementoClassic from '@/pages/Behavioral/MementoClassic/MementoClassic.tsx'
 
 const Main = React.lazy(() => import('@/pages/Creational/FactoryMethod'))
 const AbstractFactory = React.lazy(
@@ -137,6 +139,14 @@ export const routes = (): RouteObject[] => {
         {
           element: <Mediator />,
           path: Path.Mediator
+        },
+        {
+          element: <Memento />,
+          path: Path.Memento
+        },
+        {
+          element: <MementoClassic />,
+          path: Path.MementoClassic
         }
       ]
     },

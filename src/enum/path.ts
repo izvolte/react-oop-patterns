@@ -23,5 +23,7 @@ export const enum Path {
   ChainsOfResponsibility = 'behavior/chains-of-responsibility',
   Command = 'behavior/command',
   Iterator = 'behavior/iterator',
-  Mediator = 'behavior/mediator'
+  Mediator = 'behavior/mediator',
+  Memento = 'behavior/memento',
+  MementoClassic = 'behavior/memento-classic'
 }
