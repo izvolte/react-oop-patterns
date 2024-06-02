@@ -2,7 +2,7 @@ import { useReducer } from 'react';
 
 interface State<T> {
   past: T[];
-  present: T;
+  value: T;
   future: T[];
 }
 
@@ -13,18 +13,18 @@ type Action<T> =
 
 const initialState = <T>(initialValue: T): State<T> => ({
   past: [],
-  present: initialValue,
+  value: initialValue,
   future: []
 });
 
 const reducer = <T>(state: State<T>, action: Action<T>): State<T> => {
-  const { past, present, future } = state;
+  const { past, value, future } = state;
 
   switch (action.type) {
     case 'SET':
       return {
-        past: [...past, present],
-        present: action.payload!,
+        past: [...past, value],
+        value: action.payload!,
         future: []
       };
     case 'UNDO':
@@ -32,15 +32,15 @@ const reducer = <T>(state: State<T>, action: Action<T>): State<T> => {
       const previous = past[past.length - 1];
       return {
         past: past.slice(0, past.length - 1),
-        present: previous,
-        future: [present, ...future]
+        value: previous,
+        future: [value, ...future]
       };
     case 'REDO':
       if (future.length === 0) return state;
       const next = future[0];
       return {
-        past: [...past, present],
-        present: next,
+        past: [...past, value],
+        value: next,
         future: future.slice(1)
       };
     default:

@@ -1,8 +1,9 @@
-interface CounterState {
+export interface CounterState {
   count: number;
 }
+
 class Memento {
-  private state: CounterState;
+  private readonly state: CounterState;
 
   constructor(state: CounterState) {
     this.state = { ...state };
@@ -13,7 +14,7 @@ class Memento {
   }
 }
 
-export class Originator {
+class Originator {
   private state: CounterState;
 
   constructor(initialState: CounterState) {
@@ -28,51 +29,40 @@ export class Originator {
     return this.state;
   }
 
-  saveStateToMemento(): Memento {
+  snapshot(): Memento {
     return new Memento(this.state);
   }
 
-  getStateFromMemento(memento: Memento) {
+  backup(memento: Memento) {
     this.state = memento.getState();
   }
 }
 
-export class Caretaker {
+class Caretaker {
   private mementoList: Memento[] = [];
   private redoList: Memento[] = [];
 
   addMemento(memento: Memento) {
     this.mementoList.push(memento);
-    this.redoList = []; // Очистить redoList при новом действии
+    this.redoList = [];
   }
-
-  getLastMemento(): Memento | null {
-    if (this.mementoList.length === 0) {
-      return null;
-    }
-    return this.mementoList[this.mementoList.length - 1];
-  }
-
   popLastMemento(): Memento | null {
-    if (this.mementoList.length === 0) {
-      return null;
-    }
-    const memento = this.mementoList.pop()!;
-    this.redoList.push(memento);
-    return memento;
+    const memento = this.mementoList.pop();
+    if(memento) this.redoList.push(memento);
+    return memento ?? null;
   }
-
-  getLastRedoMemento(): Memento | null {
-    if (this.redoList.length === 0) {
-      return null;
-    }
-    return this.redoList[this.redoList.length - 1];
-  }
-
   popLastRedoMemento(): Memento | null {
-    if (this.redoList.length === 0) {
-      return null;
-    }
-    return this.redoList.pop()!;
+    const lastRedoMemento = this.redoList.pop()
+    return lastRedoMemento ?? null;
+  }
+
+  canUndo(): boolean {
+    return this.mementoList.length > 0;
+  }
+
+  canRedo(): boolean {
+    return this.redoList.length > 0;
   }
 }
+
+export { Caretaker, Memento, Originator }
