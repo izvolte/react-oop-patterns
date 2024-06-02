@@ -7,8 +7,10 @@ interface CounterState {
   count: number;
 }
 
+const init:CounterState = { count: 0 }
+
 const Memento = () => {
-  const {state, set, undo, redo} = useMemento<CounterState>({ count: 0 });
+  const {state, set, undo, redo} = useMemento(init);
 
   return (
     <div style={{ padding: '20px' }}>
