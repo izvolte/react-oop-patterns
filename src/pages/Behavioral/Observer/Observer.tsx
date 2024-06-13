@@ -14,7 +14,7 @@ const Observer = () => {
           EventEmitter Example
         </Title>
       </Header>
-      <Content style={{ padding: '50px', display: 'flex', flexDirection: 'column', gap: '10pxд' }}>
+      <Content style={{ padding: '50px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
           <FileOpener />
           <FileSaver />
           <EventLogger/>
