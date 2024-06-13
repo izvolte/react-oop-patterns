@@ -25,5 +25,6 @@ export const enum Path {
   Iterator = 'behavior/iterator',
   Mediator = 'behavior/mediator',
   Memento = 'behavior/memento',
-  MementoClassic = 'behavior/memento-classic'
+  MementoClassic = 'behavior/memento-classic',
+  Observer = 'behavior/observer',
 }

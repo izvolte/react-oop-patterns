@@ -5,6 +5,7 @@ import Iterator from '@/pages/Behavioral/Iterator'
 import Mediator from '@/pages/Behavioral/Mediator'
 import Memento from '@/pages/Behavioral/Memento/Memento.tsx'
 import MementoClassic from '@/pages/Behavioral/MementoClassic/MementoClassic.tsx'
+import Observer from './pages/Behavioral/Observer/Observer'
 
 const Main = React.lazy(() => import('@/pages/Creational/FactoryMethod'))
 const AbstractFactory = React.lazy(
@@ -147,6 +148,10 @@ export const routes = (): RouteObject[] => {
         {
           element: <MementoClassic />,
           path: Path.MementoClassic
+        },
+        {
+          element: <Observer />,
+          path: Path.Observer
         }
       ]
     },

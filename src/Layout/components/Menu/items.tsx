@@ -18,9 +18,10 @@ import {
   HourglassOutlined,
   MailOutlined,
   FieldNumberOutlined,
-  ClusterOutlined, SaveOutlined
+  ClusterOutlined, SaveOutlined, EyeOutlined
 } from '@ant-design/icons'
 import { MenuProps } from 'antd'
+
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -159,7 +160,12 @@ export const MENU_ITEMS: MenuItem[] = [
           <div style={{ transform: 'rotateY(180deg)' }}>
             <SaveOutlined />
           </div>,
-        label: 'Снимко Classic'
+        label: 'Снимок Classic'
+      },
+      {
+        key: Path.Observer,
+        icon: <EyeOutlined />,
+        label: 'Наблюдатель'
       }
     ]
   }
