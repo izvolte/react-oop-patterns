@@ -14,13 +14,13 @@ export const EventLogger = () => {
       setLog(prevLog => [`File saved: ${filename}`, ...prevLog]);
     };
 
-    emitter.on<string>('open', handleOpen);
-    emitter.on<string>('save', handleSave);
+    emitter.on('open', handleOpen);
+    emitter.on('save', handleSave);
 
     // Удаление подписки при размонтировании компонента
     return () => {
-      emitter.off<string>('open', handleOpen);
-      emitter.off<string>('save', handleSave);
+      emitter.off('open', handleOpen);
+      emitter.off('save', handleSave);
     };
   }, []);
 

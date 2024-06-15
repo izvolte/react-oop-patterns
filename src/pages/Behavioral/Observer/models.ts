@@ -7,7 +7,7 @@ class EventEmitter {
     if (!this.events.has(event)) {
       this.events.set(event, []);
     }
-    this.events.get(event)!.push(callback as EventCallback);
+    this.events.get(event)?.push(callback as EventCallback);
   }
 
   off<T>(event: string, callback: EventCallback<T>): void {
