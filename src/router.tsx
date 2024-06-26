@@ -1,11 +1,6 @@
 import * as React from 'react'
 import { RouteObject } from 'react-router-dom'
 import { Path } from '@/enum/path'
-import Iterator from '@/pages/Behavioral/Iterator'
-import Mediator from '@/pages/Behavioral/Mediator'
-import Memento from '@/pages/Behavioral/Memento/Memento.tsx'
-import MementoClassic from '@/pages/Behavioral/MementoClassic/MementoClassic.tsx'
-import Observer from './pages/Behavioral/Observer/Observer'
 
 const Main = React.lazy(() => import('@/pages/Creational/FactoryMethod'))
 const AbstractFactory = React.lazy(
@@ -45,6 +40,12 @@ const ChainsOfResponsibility = React.lazy(
   () => import('@/pages/Behavioral/ChainsOfResponsibility')
 )
 const Command = React.lazy(() => import('@/pages/Behavioral/Command'))
+const Iterator = React.lazy(() => import('@/pages/Behavioral/Iterator'))
+const Mediator = React.lazy(() => import('@/pages/Behavioral/Mediator'))
+const Memento = React.lazy(() => import('@/pages/Behavioral/Memento'))
+const MementoClassic = React.lazy(() => import('@/pages/Behavioral/MementoClassic'))
+const Observer = React.lazy(() => import('@/pages/Behavioral/Observer'))
+const State = React.lazy(() => import('@/pages/Behavioral/State'))
 
 export const routes = (): RouteObject[] => {
   return [
@@ -152,6 +153,10 @@ export const routes = (): RouteObject[] => {
         {
           element: <Observer />,
           path: Path.Observer
+        },
+        {
+          element: <State />,
+          path: Path.State
         }
       ]
     },

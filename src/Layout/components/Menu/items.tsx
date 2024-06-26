@@ -18,7 +18,7 @@ import {
   HourglassOutlined,
   MailOutlined,
   FieldNumberOutlined,
-  ClusterOutlined, SaveOutlined, EyeOutlined
+  ClusterOutlined, SaveOutlined, EyeOutlined, PlayCircleOutlined
 } from '@ant-design/icons'
 import { MenuProps } from 'antd'
 
@@ -166,6 +166,11 @@ export const MENU_ITEMS: MenuItem[] = [
         key: Path.Observer,
         icon: <EyeOutlined />,
         label: 'Наблюдатель'
+      },
+      {
+        key: Path.State,
+        icon: <PlayCircleOutlined />,
+        label: 'Состояние'
       }
     ]
   }
