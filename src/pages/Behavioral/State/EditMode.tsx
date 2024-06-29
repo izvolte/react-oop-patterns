@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Input } from 'antd';
+import { Button, Input, Space } from 'antd'
 
 interface EditModeProps {
   text: string;
@@ -9,12 +9,12 @@ interface EditModeProps {
 
 const EditMode = ({ text, onSave, onChange }: EditModeProps) => {
   return (
-    <div>
+    <Space direction={'vertical'}>
       <Input value={text} onChange={onChange} />
       <Button type="primary" onClick={onSave}>
         Save
       </Button>
-    </div>
+    </Space>
   );
 };
 

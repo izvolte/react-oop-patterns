@@ -1,4 +1,4 @@
-import { Button, Typography } from 'antd';
+import { Button, Space, Typography } from 'antd'
 
 const { Text } = Typography;
 
@@ -9,12 +9,12 @@ interface ViewModeProps {
 
 const ViewMode = ({ text, onEdit }: ViewModeProps) => {
   return (
-    <div>
+    <Space direction={'vertical'}>
       <Text>{text}</Text>
       <Button type="link" onClick={onEdit}>
         Edit
       </Button>
-    </div>
+    </Space>
   );
 };
 

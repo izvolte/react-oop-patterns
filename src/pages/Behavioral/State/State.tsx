@@ -28,15 +28,22 @@ const State = () => {
     setText(e.target.value);
   };
 
+  const getState = () => {
+    switch (mode) {
+      case EditModeEnum.View:
+        return <ViewMode text={text} onEdit={handleEditClick} />
+      case EditModeEnum.Edit:
+        return <EditMode text={text} onSave={handleSaveClick} onChange={handleChange} />
+      case EditModeEnum.Loading:
+        return <LoadingMode />
+      default:
+        throw new Error('Invalid mode')
+    }
+  }
+
   return (
     <div>
-      {mode === EditModeEnum.View ? (
-        <ViewMode text={text} onEdit={handleEditClick} />
-      ) : null}
-      {mode === EditModeEnum.Edit ? (
-        <EditMode text={text} onSave={handleSaveClick} onChange={handleChange} />
-      ) : null}
-      {mode === EditModeEnum.Loading ? <LoadingMode /> : null}
+      {getState()}
     </div>
   );
 };
