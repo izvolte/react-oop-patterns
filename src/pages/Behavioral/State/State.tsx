@@ -3,7 +3,7 @@ import ViewMode from './ViewMode.tsx'
 import EditMode from './EditMode.tsx'
 import LoadingMode from './LoadingMode.tsx'
 
-enum EditModeEnum {
+const enum EditModeEnum {
   View,
   Edit,
   Loading,
