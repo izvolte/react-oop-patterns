@@ -46,6 +46,7 @@ const Memento = React.lazy(() => import('@/pages/Behavioral/Memento'))
 const MementoClassic = React.lazy(() => import('@/pages/Behavioral/MementoClassic'))
 const Observer = React.lazy(() => import('@/pages/Behavioral/Observer'))
 const State = React.lazy(() => import('@/pages/Behavioral/State'))
+const Strategy = React.lazy(() => import('@/pages/Behavioral/Strategy'))
 
 export const routes = (): RouteObject[] => {
   return [
@@ -157,6 +158,10 @@ export const routes = (): RouteObject[] => {
         {
           element: <State />,
           path: Path.State
+        },
+        {
+          element: <Strategy />,
+          path: Path.Strategy
         }
       ]
     },

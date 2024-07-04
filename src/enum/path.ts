@@ -28,4 +28,5 @@ export const enum Path {
   MementoClassic = 'behavior/memento-classic',
   Observer = 'behavior/observer',
   State = 'behavior/state',
+  Strategy = 'behavior/strategy',
 }

@@ -18,7 +18,7 @@ import {
   HourglassOutlined,
   MailOutlined,
   FieldNumberOutlined,
-  ClusterOutlined, SaveOutlined, EyeOutlined, PlayCircleOutlined
+  ClusterOutlined, SaveOutlined, EyeOutlined, PlayCircleOutlined, BulbOutlined
 } from '@ant-design/icons'
 import { MenuProps } from 'antd'
 
@@ -171,6 +171,11 @@ export const MENU_ITEMS: MenuItem[] = [
         key: Path.State,
         icon: <PlayCircleOutlined />,
         label: 'Состояние'
+      },
+      {
+        key: Path.Strategy,
+        icon: <BulbOutlined />,
+        label: 'Стратегия'
       }
     ]
   }
