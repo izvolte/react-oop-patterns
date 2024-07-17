@@ -29,4 +29,5 @@ export const enum Path {
   Observer = 'behavior/observer',
   State = 'behavior/state',
   Strategy = 'behavior/strategy',
+  TemplateMethod = 'behavior/template-method',
 }

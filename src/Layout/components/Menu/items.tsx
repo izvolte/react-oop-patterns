@@ -176,6 +176,11 @@ export const MENU_ITEMS: MenuItem[] = [
         key: Path.Strategy,
         icon: <BulbOutlined />,
         label: 'Стратегия'
+      },
+      {
+        key: Path.TemplateMethod,
+        icon: <BulbOutlined />,
+        label: 'Шаблонный метод'
       }
     ]
   }
