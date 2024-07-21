@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card } from 'antd';
 import { ChartData, ChartOptions } from 'chart.js';
 import { Line, Bar, Pie } from 'react-chartjs-2';
@@ -32,23 +31,23 @@ ChartJS.register(
 
 type BaseChartProps = {
   title: string;
-  labels?: string[];
-  data?: number[];
+  labels: string[];
+  data: number[];
   backgroundColor?: string[];
   borderColor?: string[];
   options?: ChartOptions<'line'> | ChartOptions<'bar'> | ChartOptions<'pie'>;
   type: ChartType;
 };
 
-const BaseChart: React.FC<BaseChartProps> = ({
+const BaseChart = ({
    title,
-   labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-   data = [65, 59, 80, 81, 56, 55, 40],
+   labels,
+   data,
    backgroundColor = ['rgba(75,192,192,0.4)'],
    borderColor = ['rgba(75,192,192,1)'],
    options,
    type,
-  }) => {
+  }: BaseChartProps) => {
 
   const defaultOptions: ChartOptions<'line'> | ChartOptions<'bar'> | ChartOptions<'pie'> = {
     responsive: true,
