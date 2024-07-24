@@ -18,7 +18,13 @@ import {
   HourglassOutlined,
   MailOutlined,
   FieldNumberOutlined,
-  ClusterOutlined, SaveOutlined, EyeOutlined, PlayCircleOutlined, BulbOutlined
+  ClusterOutlined,
+  SaveOutlined,
+  EyeOutlined,
+  PlayCircleOutlined,
+  BulbOutlined,
+  SnippetsOutlined,
+  PullRequestOutlined
 } from '@ant-design/icons'
 import { MenuProps } from 'antd'
 
@@ -179,8 +185,13 @@ export const MENU_ITEMS: MenuItem[] = [
       },
       {
         key: Path.TemplateMethod,
-        icon: <BulbOutlined />,
+        icon: <SnippetsOutlined />,
         label: 'Шаблонный метод'
+      },
+      {
+        key: Path.Visitor,
+        icon: <PullRequestOutlined />,
+        label: 'Посетитель'
       }
     ]
   }

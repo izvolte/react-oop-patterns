@@ -48,6 +48,7 @@ const Observer = React.lazy(() => import('@/pages/Behavioral/Observer'))
 const State = React.lazy(() => import('@/pages/Behavioral/State'))
 const Strategy = React.lazy(() => import('@/pages/Behavioral/Strategy'))
 const TemplateMethod = React.lazy(() => import('@/pages/Behavioral/TemplateMethod'))
+const Visitor = React.lazy(() => import('@/pages/Behavioral/Visitor'))
 
 export const routes = (): RouteObject[] => {
   return [
@@ -167,6 +168,10 @@ export const routes = (): RouteObject[] => {
         {
           element: <TemplateMethod />,
           path: Path.TemplateMethod
+        },
+        {
+          element: <Visitor />,
+          path: Path.Visitor
         }
       ]
     },
