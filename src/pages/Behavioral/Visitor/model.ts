@@ -17,11 +17,11 @@ class ConsoleAnalyticsVisitor implements AnalyticsVisitor {
     return ConsoleAnalyticsVisitor.instance;
   }
 
-  visitButtonComponent(event: React.MouseEvent<HTMLButtonElement>) {
+  visitButtonComponent(_event: React.MouseEvent<HTMLButtonElement>) {
     console.log(`Button component clicked`);
   }
 
-  visitInputComponent(event: React.MouseEvent<HTMLInputElement>) {
+  visitInputComponent(_event: React.MouseEvent<HTMLInputElement>) {
     console.log(`Input component clicked`);
   }
 }
